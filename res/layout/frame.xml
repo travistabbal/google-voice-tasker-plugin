@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  
+ *  Google Voice Tasker Plugin - Tasker integration with Google Voice
+ *  Copyright (C) 2012  Kenneth Ko <http://www.kenko.co>
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+>
+
+	<EditText
+	    android:id="@+id/phone"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:autoText="true"
+	    android:hint="@string/phone"
+	    android:inputType="phone" >
+
+		<requestFocus />
+
+	</EditText>
+	
+	<EditText
+	    android:id="@+id/gvuser"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:autoText="true"
+	    android:hint="@string/gvuser"
+	    android:inputType="textEmailAddress" >
+	</EditText>
+	
+	<EditText
+	    android:id="@+id/gvpass"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:autoText="true"
+	    android:hint="@string/gvpass"
+	    android:inputType="textPassword" >
+	</EditText>
+	
+    <EditText
+        android:id="@+id/messagebody"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:hint="@string/message_hint"
+        android:inputType="textAutoCorrect" />
+
+</LinearLayout>

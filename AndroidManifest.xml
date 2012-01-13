@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  
+ *  Google Voice Tasker Plugin - Tasker integration with Google Voice
+ *  Copyright (C) 2012  Kenneth Ko <http://www.kenko.co>
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<!-- Because plug-ins interact with Locale as a background service, plug-ins MUST be installed to internal memory. This is 
+    consistent with Google's app install location guidelines: <http://developer.android.com/guide/appendix/install-location.html#Should>. 
+    Note that Locale will reject plug-ins set to either installLocation="auto" OR installLocation="preferExternal". A plug-in MUST
+    specific "internalOnly" or omit the android:installLocation attribute entirely. -->
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yourcompany.yoursetting"
+    android:versionCode="2010"
+    android:versionName="2.0.1"
+    android:installLocation="internalOnly"
+>
+    <!-- This particular plug-in requires SDK 4 because it relies on new APIs introduced in SDK 4. -->
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="14" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/icon_app"
+        android:name="com.ko.googlevoice.PluginApplication"
+        android:hardwareAccelerated="true"
+        android:debuggable="false"
+    >
+        <!-- This optional Activity comes from the Locale Developer Platform Android Library Project. If this plug-in does 
+            not stand alone (e.g. it is only a plug-in for Locale and does not have a Launcher Activity), including this in the manifest 
+            will help when users tap the "Open" button in the Android Market. -->
+        <activity
+            android:name="com.twofortyfouram.locale.MarketActivity"
+            android:label="@string/app_name"
+            android:icon="@drawable/icon_app"
+            android:theme="@style/Theme.Locale.Dialog"
+            android:exported="true"
+        >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.INFO" />
+            </intent-filter>
+        </activity>
+        <!-- This is the "edit" Activity. Note that Locale will reject plug-in Activities for the following reasons: 
+                 - Missing "android:label=[...]"
+                 - Missing "android:icon=[...]"
+                 - The Activity isn't exported (e.g. android:exported="false")
+                 - The Activity isn't enabled (e.g. android:enabled="false")
+                 - The Activity requires permissions not available to Locale -->
+        <activity
+            android:name="com.ko.googlevoice.ui.EditActivity"
+            android:label="@string/plugin_name"
+            android:icon="@drawable/icon_plugin"
+            android:theme="@style/Theme.Locale.Dark"
+            android:exported="true"
+        >
+            <!-- this Intent filter allows the plug-in to be discovered by Locale -->
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING" />
+            </intent-filter>
+        </activity>
+        <!-- This is the "fire" BroadcastReceiver. Note that Locale will reject plug-in BroadcastReceivers for the following reasons:
+                - The BroadcastReceiver isn't exported (e.g. android:exported="false")
+                - The BroadcastReceiver isn't enabled (e.g. android:enabled="false")
+                - The BroadcastReceiver requires permissions not available to Locale
+                - There are multiple BroadcastReceivers for com.twofortyfouram.locale.intent.action.FIRE_SETTING -->
+        <receiver
+            android:name="com.ko.googlevoice.receiver.FireReceiver"
+            android:exported="true"
+        >
+            <!-- this Intent filter allows the plug-in to discovered by Locale -->
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

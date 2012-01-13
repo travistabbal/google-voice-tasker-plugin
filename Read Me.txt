@@ -1,0 +1,7 @@
+This is a sample Locale Plug-in setting that will display a customizable Toast message when fired.  We encourage plug-in developers to use this sample as a template for building new plug-ins.  This plug-in has been implemented using best practices and it includes an extensive test suite under the tests/ directory that verifies compatibility with Locale.
+
+This sample plug-in is dependent on the Locale Developer Platform Android Library Project.  In order to build this sample plug-in, please download the library project from <http://www.twofortyfouram.com/developer/platform.zip>.
+
+
+KNOWN ISSUES
+- On Android 3.0 and later, the "Home" item in the ActionBar will display the plug-in's Activity icon instead of Locale's icon.  This is due to a limitation in the ActionBar APIs for which there is currently no workaround.
